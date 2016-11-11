@@ -20,6 +20,7 @@ public class CrimeHolder extends RecyclerView.ViewHolder {
         mTitleTextView = (TextView)itemView.findViewById(R.id.list_item_crime_title_text_view);
         mDateTextView = (TextView)itemView.findViewById(R.id.list_item_crime_date_text_view);
         mSolvedCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_crime_solved_check_box);
+        mSolvedCheckBox.setClickable(false);
     }
 
     public void configure(Crime crime) {

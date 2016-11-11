@@ -1,6 +1,8 @@
 package com.remirobert.android.criminalintent;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -42,6 +44,10 @@ public class CrimeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID id = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get().getCrime(id);
+
+        Intent intent = new Intent();
+        intent.putExtra(CrimeActivity.RES_CRIME_INDEX, CrimeLab.get().getIndexCrime(mCrime));
+        getActivity().setResult(Activity.RESULT_OK, intent);
     }
 
     @Nullable

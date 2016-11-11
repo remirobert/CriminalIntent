@@ -18,8 +18,19 @@ import io.reactivex.functions.Consumer;
 
 public class CrimeListFragment extends Fragment {
 
+    private static final int REQUEST_CRIME = 1;
+
     private RecyclerView mRecyclerView;
     private CrimeAdapter mCrimeAdapter;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CRIME) {
+            int crimeIndex = data.getIntExtra(CrimeActivity.RES_CRIME_INDEX, 0);
+            mCrimeAdapter.notifyItemChanged(crimeIndex);
+        }
+    }
 
     @Nullable
     @Override
@@ -30,18 +41,20 @@ public class CrimeListFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mCrimeAdapter = new CrimeAdapter(CrimeLab.get().getCrimeList(), getActivity());
+        mRecyclerView.setAdapter(mCrimeAdapter);
+
         mCrimeAdapter.getCrimeObservable().subscribe(new Consumer<Crime>() {
             @Override
             public void accept(Crime crime) throws Exception {
                 onClick(crime);
             }
         });
-        mRecyclerView.setAdapter(mCrimeAdapter);
+
         return view;
     }
 
     private void onClick(Crime crime) {
         Intent intent = CrimeActivity.createIntent(getActivity(), crime.getId());
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CRIME);
     }
 }

@@ -27,6 +27,10 @@ public class CrimeLab {
         return null;
     }
 
+    public int getIndexCrime(Crime crime) {
+        return mCrimeList.indexOf(crime);
+    }
+
     public static CrimeLab get() {
         if (sCrimeLab == null) {
             sCrimeLab = new CrimeLab();
