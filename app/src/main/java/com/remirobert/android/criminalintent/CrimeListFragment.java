@@ -26,10 +26,10 @@ public class CrimeListFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CRIME) {
-            int crimeIndex = data.getIntExtra(CrimeActivity.RES_CRIME_INDEX, 0);
-            mCrimeAdapter.notifyItemChanged(crimeIndex);
-        }
+//        if (requestCode == REQUEST_CRIME) {
+//            int crimeIndex = data.getIntExtra(CrimeActivity.RES_CRIME_INDEX, 0);
+//            mCrimeAdapter.notifyItemChanged(crimeIndex);
+//        }
     }
 
     @Nullable
@@ -54,7 +54,9 @@ public class CrimeListFragment extends Fragment {
     }
 
     private void onClick(Crime crime) {
-        Intent intent = CrimeActivity.createIntent(getActivity(), crime.getId());
-        startActivityForResult(intent, REQUEST_CRIME);
+        Intent intent = new Intent(getActivity(), CrimePagerActivity.class);
+        startActivity(intent);
+//        Intent intent = CrimeActivity.createIntent(getActivity(), crime.getId());
+//        startActivityForResult(intent, REQUEST_CRIME);
     }
 }
