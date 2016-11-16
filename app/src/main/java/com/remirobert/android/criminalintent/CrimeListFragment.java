@@ -55,8 +55,7 @@ public class CrimeListFragment extends Fragment {
 
     private void onClick(Crime crime) {
         Intent intent = new Intent(getActivity(), CrimePagerActivity.class);
+        intent.putExtra(CrimePagerActivity.EXTRA_CRIME_ID, crime.getId());
         startActivity(intent);
-//        Intent intent = CrimeActivity.createIntent(getActivity(), crime.getId());
-//        startActivityForResult(intent, REQUEST_CRIME);
     }
 }
