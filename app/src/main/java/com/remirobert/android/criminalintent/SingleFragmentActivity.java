@@ -3,13 +3,13 @@ package com.remirobert.android.criminalintent;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by remirobert on 05/11/2016.
  */
 
-public abstract class SingleFragmentActivity extends FragmentActivity {
+public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment createFragment();
 
