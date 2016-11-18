@@ -2,6 +2,8 @@ package com.remirobert.android.criminalintent;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -20,6 +22,12 @@ public class CrimePagerActivity extends AppCompatActivity {
     public static final String EXTRA_CRIME_ID = "com.remirobert.android.criminalintent.crime_id_pager";
     private ViewPager mViewPager;
     private List<Crime> mCrimeList;
+
+    public static Intent newIntent(Context context, UUID idCrime) {
+        Intent intent = new Intent(context, CrimePagerActivity.class);
+        intent.putExtra(CrimePagerActivity.EXTRA_CRIME_ID, idCrime);
+        return intent;
+    }
 
     @Override
     protected void onResume() {
