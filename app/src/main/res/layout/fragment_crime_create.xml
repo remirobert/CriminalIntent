@@ -34,4 +34,13 @@
         android:layout_marginTop="20sp"
         />
 
+    <Button
+        android:text="@string/crime_title_save_button"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
