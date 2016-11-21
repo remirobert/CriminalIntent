@@ -49,8 +49,11 @@ public class CrimeListFragment extends Fragment {
             case R.id.menu_item_new_crime:
                 Crime crime = new Crime();
                 CrimeLab.get().addCrime(crime);
-                Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId());
-                startActivity(intent);
+//                Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId(), true);
+/*
+                Intent intent = CrimeFragment.newInstance(crime.getId(), true);
+                                startActivity(intent);
+*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

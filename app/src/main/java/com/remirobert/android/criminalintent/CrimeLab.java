@@ -2,7 +2,11 @@ package com.remirobert.android.criminalintent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by remirobert on 03/11/2016.
@@ -11,14 +15,14 @@ import java.util.UUID;
 public class CrimeLab {
 
     private static CrimeLab sCrimeLab;
-
+    private Realm mRealm;
     private List<Crime> mCrimeList;
 
     public List<Crime>getCrimeList() {
         return mCrimeList;
     }
 
-    public Crime getCrime(UUID uuid) {
+    public Crime getCrime(String uuid) {
         for (Crime crime : mCrimeList) {
             if (crime.getId().equals(uuid)) {
                 return crime;
@@ -40,19 +44,23 @@ public class CrimeLab {
 
     public void deleteCrime(Crime crime) {
         mCrimeList.remove(crime);
+        mRealm.beginTransaction();
+        crime.deleteFromRealm();
+        mRealm.commitTransaction();
     }
 
     public void addCrime(Crime crime) {
         mCrimeList.add(crime);
+        mRealm.beginTransaction();
+        mRealm.copyToRealm(crime);
+        mRealm.commitTransaction();
     }
 
     public CrimeLab() {
-        mCrimeList = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            Crime crime = new Crime();
-            crime.setTitle("#" + i);
-            crime.setSolved(i % 2 == 0);
-            mCrimeList.add(crime);
-        }
+        mRealm = Realm.getDefaultInstance();
+        RealmQuery<Crime> query = mRealm.where(Crime.class);
+        RealmResults<Crime> realmResults = query.findAll();
+        realmResults = realmResults.sort("mDate", Sort.DESCENDING);
+        mCrimeList = new ArrayList<>(realmResults);
     }
 }

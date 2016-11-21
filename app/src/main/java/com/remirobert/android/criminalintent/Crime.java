@@ -3,18 +3,22 @@ package com.remirobert.android.criminalintent;
 import java.util.Date;
 import java.util.UUID;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by remirobert on 31/10/2016.
  */
 
-public class Crime {
+public class Crime extends RealmObject {
+    @PrimaryKey
+    private String mId;
     private String mTitle;
-    private UUID mId;
     private Date mDate;
     private boolean mSolved;
 
-    Crime() {
-        mId = UUID.randomUUID();
+    public Crime() {
+        mId = UUID.randomUUID().toString();
         mDate = new Date();
     }
 
@@ -26,7 +30,7 @@ public class Crime {
         mTitle = title;
     }
 
-    public UUID getId() {
+    public String getId() {
         return mId;
     }
 

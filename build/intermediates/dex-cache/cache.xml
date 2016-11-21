@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ce99e195d7568218e41c96db4381097632005d1f">
+        sha1="14ce6f7fd8180814a5c91ebc7c989fb57a1f9f11">
         <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7f076ed6e16e8bdc35920a4ea512e022fae32595/classes.dex" />
     </item>
     <item
@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="d4edea4a4045be22686a955021275af7af8b2e5a">
+        sha1="07a8c2fba312d4075a1c141a26f435f805569a4e">
         <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ccd56e13d46df3c9bc45e39265b876c84a904208/classes.dex" />
     </item>
     <item
@@ -156,21 +156,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/remirobert/CriminalIntent 2/app/build/intermediates/exploded-aar/com.android.support/support-v13/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="6ac094121e75b4b87432beb9305d70c68ec6dcab">
-        <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v13-25.0.0_144799022a36a2377f247813fe382bb2a131f66d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/remirobert/CriminalIntent 2/app/build/intermediates/exploded-aar/com.getkeepsafe.relinker/relinker/1.2.2/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="b64dd5f01bc37de289f90fd59299b0c76d119611">
         <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.getkeepsafe.relinker-relinker-1.2.2_f1eb2fcdfaa68698c0ad9de6a938fecc6376fee0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/remirobert/CriminalIntent 2/app/build/intermediates/exploded-aar/com.android.support/support-v13/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="6ac094121e75b4b87432beb9305d70c68ec6dcab">
+        <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v13-25.0.0_144799022a36a2377f247813fe382bb2a131f66d/classes.dex" />
     </item>
     <item
         is-multidex="true"

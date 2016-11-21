@@ -20,7 +20,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created by remirobert on 31/10/2016.
@@ -38,9 +37,9 @@ public class CrimeFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
 
-    public static Fragment newInstance(UUID uuid) {
+    public static Fragment newInstance(String uuid) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_CRIME_ID, uuid);
+        args.putString(ARG_CRIME_ID, uuid);
 
         CrimeFragment crimeFragment = new CrimeFragment();
         crimeFragment.setArguments(args);
@@ -50,7 +49,7 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID id = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
+        String id = getArguments().getString(ARG_CRIME_ID);
         mCrime = CrimeLab.get().getCrime(id);
 
         Intent intent = new Intent();

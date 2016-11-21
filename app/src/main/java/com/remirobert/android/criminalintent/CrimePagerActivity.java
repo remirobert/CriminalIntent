@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by remirobert on 11/11/2016.
@@ -23,7 +22,7 @@ public class CrimePagerActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private List<Crime> mCrimeList;
 
-    public static Intent newIntent(Context context, UUID idCrime) {
+    public static Intent newIntent(Context context, String idCrime) {
         Intent intent = new Intent(context, CrimePagerActivity.class);
         intent.putExtra(CrimePagerActivity.EXTRA_CRIME_ID, idCrime);
         return intent;
@@ -32,7 +31,7 @@ public class CrimePagerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        UUID idCrime = (UUID)getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+        String idCrime = getIntent().getStringExtra(EXTRA_CRIME_ID);
         for (int i = 0; i < mCrimeList.size(); i++) {
             if (mCrimeList.get(i).getId().equals(idCrime)) {
                 mViewPager.setCurrentItem(i);
