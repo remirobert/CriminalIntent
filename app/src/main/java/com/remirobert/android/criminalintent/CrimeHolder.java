@@ -1,6 +1,7 @@
 package com.remirobert.android.criminalintent;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -25,7 +26,9 @@ public class CrimeHolder extends RecyclerView.ViewHolder {
 
     public void configure(Crime crime) {
         mTitleTextView.setText(crime.getTitle());
-        mDateTextView.setText(crime.getDate().toString());
+        String dateFormat = "EEE, MMM dd";
+        String dateString = DateFormat.format(dateFormat, crime.getDate()).toString();
+        mDateTextView.setText(dateString);
         mSolvedCheckBox.setChecked(crime.isSolved());
     }
 }

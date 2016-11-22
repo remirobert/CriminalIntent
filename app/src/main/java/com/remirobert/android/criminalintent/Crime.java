@@ -16,6 +16,7 @@ public class Crime extends RealmObject {
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
+    private String mSuspect;
 
     public Crime() {
         mId = UUID.randomUUID().toString();
@@ -48,5 +49,13 @@ public class Crime extends RealmObject {
 
     public void setSolved(boolean solved) {
         mSolved = solved;
+    }
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 }

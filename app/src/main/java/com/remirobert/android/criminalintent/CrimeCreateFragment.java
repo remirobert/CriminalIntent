@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,9 @@ public class CrimeCreateFragment extends Fragment {
         }
         if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-            mDateButton.setText(date.toString());
+            String dateFormat = "EEE, MMM dd";
+            String dateString = DateFormat.format(dateFormat, date).toString();
+            mDateButton.setText(dateString);
             mSelectedDate = date;
             setState((mTitleEditText.getText().toString().length() > 0 && mSelectedDate != null));
         }

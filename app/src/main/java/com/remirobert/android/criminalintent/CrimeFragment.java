@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +47,12 @@ public class CrimeFragment extends Fragment {
         return crimeFragment;
     }
 
+    private void setDateFormat(Date date) {
+        String dateFormat = "EEE, MMM dd";
+        String dateString = DateFormat.format(dateFormat, date).toString();
+        mDateButton.setText(dateString);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +71,7 @@ public class CrimeFragment extends Fragment {
         }
         if (requestCode == REQUEST_DATE) {
             Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-            mDateButton.setText(date.toString());
+            setDateFormat(date);
             mCrime.setDate(date);
         }
     }
@@ -94,7 +101,7 @@ public class CrimeFragment extends Fragment {
 
         setHasOptionsMenu(true);
         mDateButton = (Button) view.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
+        setDateFormat(mCrime.getDate());
 
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override

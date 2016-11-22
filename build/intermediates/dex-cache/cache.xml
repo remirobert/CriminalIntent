@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="23dca50e1ec619b31dc8de24b00fd6e0781f9a7e">
+        sha1="dbe559b1aab3158f0b064437b032c8e99d5d87ef">
         <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7f076ed6e16e8bdc35920a4ea512e022fae32595/classes.dex" />
     </item>
     <item
@@ -133,7 +133,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="e33c94324d94121fc09a89690810a8aa00ba327b">
+        sha1="61b92c491820c9f491e5a04291023bf6139eb3f0">
         <dex dex="/Users/remirobert/CriminalIntent 2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ccd56e13d46df3c9bc45e39265b876c84a904208/classes.dex" />
     </item>
     <item
