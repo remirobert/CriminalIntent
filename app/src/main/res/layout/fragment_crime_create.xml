@@ -35,6 +35,7 @@
         />
 
     <Button
+        android:id="@+id/crime_save"
         android:text="@string/crime_title_save_button"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorAccent"
