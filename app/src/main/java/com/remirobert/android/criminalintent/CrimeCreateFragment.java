@@ -22,7 +22,6 @@ import java.util.Date;
 
 public class CrimeCreateFragment extends Fragment {
 
-    private static final String ARG_CRIME_ID = "crime_id";
     private static final String DIALOG_DATE = "DialogDate";
     private static final int REQUEST_DATE = 0;
 
