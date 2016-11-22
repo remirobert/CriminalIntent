@@ -14,8 +14,8 @@
         android:id="@+id/crime_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
-        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginTop="10sp"
         android:hint="@string/crime_title_hint"/>
 
     <TextView
@@ -28,10 +28,10 @@
         android:id="@+id/crime_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="10sp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         />
 
     <Button
