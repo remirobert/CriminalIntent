@@ -31,6 +31,12 @@ public class CrimeCreateFragment extends Fragment {
     private Date mSelectedDate;
     private Button mSaveButton;
 
+    private void setDateFormat() {
+        String dateFormat = "EEE, MMM dd";
+        String dateString = DateFormat.format(dateFormat, mSelectedDate).toString();
+        mDateButton.setText(dateString);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
@@ -38,10 +44,8 @@ public class CrimeCreateFragment extends Fragment {
         }
         if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-            String dateFormat = "EEE, MMM dd";
-            String dateString = DateFormat.format(dateFormat, date).toString();
-            mDateButton.setText(dateString);
             mSelectedDate = date;
+            setDateFormat();
             setState((mTitleEditText.getText().toString().length() > 0 && mSelectedDate != null));
         }
     }
@@ -59,6 +63,9 @@ public class CrimeCreateFragment extends Fragment {
         mTitleEditText = (EditText) view.findViewById(R.id.crime_title);
         mDateButton = (Button) view.findViewById(R.id.crime_date);
         mSaveButton = (Button) view.findViewById(R.id.crime_save);
+
+        mSelectedDate = new Date();
+        setDateFormat();
 
         setState(false);
 
