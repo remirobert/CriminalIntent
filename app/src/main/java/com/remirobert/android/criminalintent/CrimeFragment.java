@@ -5,10 +5,12 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +24,8 @@ import android.widget.EditText;
 
 import java.util.Date;
 
+import io.realm.Realm;
+
 /**
  * Created by remirobert on 31/10/2016.
  */
@@ -32,11 +36,12 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
 
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_CONTACT = 0;
 
     private EditText mEditText;
     private Crime mCrime;
     private Button mDateButton;
-    private CheckBox mSolvedCheckBox;
+
 
     public static Fragment newInstance(String uuid) {
         Bundle args = new Bundle();
@@ -70,23 +75,26 @@ public class CrimeFragment extends Fragment {
             return;
         }
         if (requestCode == REQUEST_DATE) {
-            Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             setDateFormat(date);
             mCrime.setDate(date);
+        }
+        else if (requestCode == REQUEST_CONTACT) {
+
         }
     }
 
     @Override
-     public boolean onOptionsItemSelected(MenuItem item) {
-         switch (item.getItemId()) {
-             case R.id.menu_item_delete_crime:
-                 CrimeLab.get().deleteCrime(mCrime);
-                 getActivity().finish();
-                 return true;
-             default:
-                 return super.onOptionsItemSelected(item);
-         }
-     }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_crime:
+                CrimeLab.get().deleteCrime(mCrime);
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -110,7 +118,7 @@ public class CrimeFragment extends Fragment {
             suspect = getString(R.string.crime_report_suspect, suspect);
         }
         String report = getString(R.string.crime_report,
-            mCrime.getTitle(), dateString, solvedString, suspect);
+                mCrime.getTitle(), dateString, solvedString, suspect);
         return report;
     }
 
@@ -123,6 +131,27 @@ public class CrimeFragment extends Fragment {
         mDateButton = (Button) view.findViewById(R.id.crime_date);
         setDateFormat(mCrime.getDate());
 
+        Button suspectButton = (Button) view.findViewById(R.id.crime_suspect);
+        suspectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, REQUEST_CONTACT);
+            }
+        });
+
+        Button reportButton = (Button) view.findViewById(R.id.crime_report);
+        reportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
+                String chooserTitle = getString(R.string.crime_report_chooser_title);
+                startActivity(Intent.createChooser(intent, chooserTitle));
+            }
+        });
+
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,12 +162,15 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        mSolvedCheckBox = (CheckBox) view.findViewById(R.id.crime_solved);
-        mSolvedCheckBox.setChecked(mCrime.isSolved());
-        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox solvedCheckBox = (CheckBox) view.findViewById(R.id.crime_solved);
+        solvedCheckBox.setChecked(mCrime.isSolved());
+        solvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Realm.getDefaultInstance().beginTransaction();
                 mCrime.setSolved(b);
+                Realm.getDefaultInstance().commitTransaction();
+                Log.d("ok", "ok");
             }
         });
 
