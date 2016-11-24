@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,7 +76,9 @@ public class CrimeFragment extends Fragment {
         if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             setDateFormat(date);
+            Realm.getDefaultInstance().beginTransaction();
             mCrime.setDate(date);
+            Realm.getDefaultInstance().commitTransaction();
         }
         else if (requestCode == REQUEST_CONTACT) {
 
@@ -170,7 +171,6 @@ public class CrimeFragment extends Fragment {
                 Realm.getDefaultInstance().beginTransaction();
                 mCrime.setSolved(b);
                 Realm.getDefaultInstance().commitTransaction();
-                Log.d("ok", "ok");
             }
         });
 
@@ -183,7 +183,9 @@ public class CrimeFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Realm.getDefaultInstance().beginTransaction();
                 mCrime.setTitle(charSequence.toString());
+                Realm.getDefaultInstance().commitTransaction();
             }
 
             @Override
